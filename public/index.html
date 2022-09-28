@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="/utils/constants.js"></script>
+    <link rel="shortcut icon" href="#">
+    <title>Party Popper!</title>
+</head>
+
+<body>
+    <h1>Click button to spawn balloon</h1>
+    <button id="balloonButton" type="button">Balloons!!!</button>
+
+    <script>
+        let wsClient;
+        var createBalloon = false;
+
+        function sendMessageToServer(message) {
+            if(!wsClient) {
+                console.log('No websocket connection');
+                return;
+            } else {
+                console.log(message);
+                wsClient.send(message);
+            }
+        }
+
+        const balloonButton = document.querySelector('#balloonButton');
+
+        balloonButton.onclick = function(e) {
+            e.preventDefault();
+
+            createBalloon = true;
+            sendMessageToServer("Balloon");
+
+        }
+
+        function init() {
+            const URL = 'ws://localhost:' + PORT;
+            console.log(PORT);
+            wsClient = new WebSocket(URL);
+
+            wsClient.onopen = (event) => {
+                console.log('Websocket connection established');
+            }
+
+            wsClient.onmessage = (event) => {
+                console.log('Message received from server: ', event);
+            }
+
+            wsClient.onclose = (event) => {
+                console.log('No WebSocket connection');
+                wsClient = null;
+            }
+
+            wsClient.onerror = (event) => {
+                console.error("WebSocket error observed:", event);
+                wsClient = null;
+            }
+
+            
+        }
+    
+        init();
+
+    </script>
+</body>
+
+</html>
