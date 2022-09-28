@@ -38,9 +38,11 @@
         }
 
         function init() {
-            const URL = 'ws://localhost:' + PORT;
+            // const URL = 'ws://localhost:' + PORT;
             console.log(PORT);
-            wsClient = new WebSocket(URL);
+            var host = location.origin.replace(/^http/, 'ws');
+            
+            wsClient = new WebSocket(host);
 
             wsClient.onopen = (event) => {
                 console.log('Websocket connection established');
