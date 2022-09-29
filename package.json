@@ -2,9 +2,11 @@
   "name": "partypooper-server",
   "version": "1.0.0",
   "main": "server.js",
+  "engines": {
+    "node": "16.17.0"
+  },
   "scripts": {
     "start": "node server.js",
-    "start:dev": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -12,6 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "eslint": "^8.24.0",
+    "express": "^4.18.1",
     "fs": "^0.0.1-security",
     "nodemon": "^2.0.20",
     "ws": "^8.9.0"

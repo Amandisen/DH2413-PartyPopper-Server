@@ -4,6 +4,79 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="#">
+    <title>Party Popper!</title>
+</head>
+
+<body>
+    <h1>Click button to spawn balloon</h1>
+    <button id="balloonButton" type="button">Balloons!!!</button>
+
+    <script>
+        let wsClient;
+
+        const balloonButton = document.querySelector('#balloonButton');
+
+        function sendMessageToServer(message) {
+            if(!wsClient) {
+                console.log('No websocket connection');
+                return;
+            } else {
+                console.log(message);
+                wsClient.send(message);
+            }
+        }
+
+        balloonButton.onclick = function (event) {
+            event.preventDefault();
+
+            if(!wsClient) {
+                console.log('No websocket connection');
+                return;
+            } else {
+                console.log("Trying to send message from server");
+                sendMessageToServer("Balloon");
+            }
+        }
+
+        function init() {
+            let HOST = location.origin.replace(/^http/, 'ws')
+            wsClient = new WebSocket(HOST);
+
+            wsClient.onopen = (event) => {
+                console.log('Websocket connection established');
+            }
+
+            wsClient.onmessage = (event) => {
+                console.log('Message received from server: ', event);
+            }
+
+            wsClient.onclose = (event) => {
+                console.log('No WebSocket connection');
+                wsClient = null;
+            }
+
+            wsClient.onerror = (event) => {
+                console.error("WebSocket error observed:", event);
+                wsClient = null;
+            }
+        }
+    
+        init();
+
+    </script>
+</body>
+</html>
+
+
+
+<!-- FUNKAR
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <script src="/utils/constants.js"></script>
     <link rel="shortcut icon" href="#">
     <title>Party Popper!</title>
@@ -14,6 +87,24 @@
     <button id="balloonButton" type="button">Balloons!!!</button>
 
     <script>
+        var HOST = location.origin.replace(/^http/, 'ws')
+        var ws = new WebSocket(HOST);
+        const balloonButton = document.querySelector('#balloonButton');
+
+        balloonButton.onclick = function (event) {
+            e.preventDefault();
+
+            if(!ws) {
+                console.log('No websocket connection');
+                return;
+            } else {
+                console.log("Trying to send message from server");
+                sendMessageToServer("Balloon");
+            }
+        }
+
+
+
         let wsClient;
         var createBalloon = false;
 
@@ -27,7 +118,6 @@
             }
         }
 
-        const balloonButton = document.querySelector('#balloonButton');
 
         balloonButton.onclick = function(e) {
             e.preventDefault();
@@ -38,11 +128,12 @@
         }
 
         function init() {
-            // const URL = 'ws://localhost:' + PORT;
+            const URL = 'ws://localhost:' + PORT;
             console.log(PORT);
-            var host = location.origin.replace(/^http/, 'ws');
-            
-            wsClient = new WebSocket(host);
+            //var host = location.origin.replace(/^http/, 'ws');
+            wsClient = new WebSocket(URL);
+
+            //const wsClient = new WebSocket("wss://partypoppervr.herokuapp.com/")
 
             wsClient.onopen = (event) => {
                 console.log('Websocket connection established');
@@ -70,4 +161,4 @@
     </script>
 </body>
 
-</html>
+</html> -->}
