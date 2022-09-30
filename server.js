@@ -27,7 +27,7 @@ function broadcast(data, socketToOmit) {
 //implement the broadcast pattern. Exclude the emitting socket. Data is message. 
   wss.clients.forEach(connectedClient => {
     if(connectedClient.readyState !== Server.CLOSED && connectedClient != socketToOmit) {
-      console.log(`trying to broadcast: ${data}`);
+      console.log(`trying to broadcast: ${JSON.stringify(data)}`);
       connectedClient.send(JSON.stringify(data));
     }
   })
