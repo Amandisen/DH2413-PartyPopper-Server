@@ -28,7 +28,7 @@ function broadcast(data, socketToOmit) {
   wss.clients.forEach(connectedClient => {
     if(connectedClient.readyState !== Server.CLOSED && connectedClient != socketToOmit) {
       console.log(`trying to broadcast: ${data}`);
-      connectedClient.send(data)
+      connectedClient.send(JSON.stringify(data));
     }
   })
 }

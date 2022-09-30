@@ -42,14 +42,15 @@
         function init() {
             let HOST = location.origin.replace(/^http/, 'ws')
             wsClient = new WebSocket(HOST);
-            wsClient.binaryType = 'blob';
+            // wsClient.binaryType = 'blob';
 
             wsClient.onopen = (event) => {
                 console.log('Websocket connection established');
             }
 
             wsClient.onmessage = (event) => {
-                if (event.data instanceof Blob) {
+                console.log("Results: " + JSON.parse(event.data));
+                /* if (event.data instanceof Blob) {
                     reader = new FileReader();
                     reader.onload = () => {
                         console.log("Result: " + reader.result);
@@ -58,8 +59,7 @@
                     reader.readAsText(event.data);
                 } else {
                     console.log("Result: " + event.data);
-                }
-                // console.log('Message received from server: ', JSON.parse(event.data));
+                } */
             }
 
             wsClient.onclose = (event) => {
