@@ -49,8 +49,7 @@
             }
 
             wsClient.onmessage = (event) => {
-                console.log("Results: " + JSON.parse(event.data));
-                /* if (event.data instanceof Blob) {
+                if (event.data instanceof Blob) {
                     reader = new FileReader();
                     reader.onload = () => {
                         console.log("Result: " + reader.result);
@@ -59,7 +58,7 @@
                     reader.readAsText(event.data);
                 } else {
                     console.log("Result: " + event.data);
-                } */
+                }
             }
 
             wsClient.onclose = (event) => {
