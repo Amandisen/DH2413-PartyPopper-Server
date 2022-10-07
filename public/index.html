@@ -1,84 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="shortcut icon" href="#">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="shortcut icon" href="#" />
+    <link rel="stylesheet" href="/utils/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="../utils/slide.js" defer></script>
     <title>Party Popper!</title>
-</head>
+  </head>
 
-<body>
-    <h1>Click button to spawn balloon</h1>
-    <button id="balloonButton" type="button">Balloons!!!</button>
+  <body>
+    <img src="../logo.png" class="logo-img" />
+
+    <div class="balloon-container">
+      <section aria-label="Balloon composition">
+        <div class="carousel" data-carousel>
+          <button
+            id="color-button"
+            class="carousel-button prev"
+            data-carousel-button="prev"
+          >
+            <img src="../arrow.png" class="arrow-left" />
+          </button>
+          <button
+            id="color-button"
+            class="carousel-button next"
+            data-carousel-button="next"
+          >
+            <img src="../arrow.png" class="arrow-right" />
+          </button>
+          <ul data-slides>
+            <li class="slide" data-active>
+              <img id="color" src="../balloonpink.png" alt="Pink" />
+            </li>
+            <li class="slide">
+              <img id="color" src="../balloonblue.png" alt="Blue" />
+            </li>
+          </ul>
+        </div>
+      </section>
+      <div class="text-container">
+        <h1>Choose color:</h1>
+        <p>Get the party started! How do you want your balloon to look?</p>
+      </div>
+    </div>
+    <div class="balloon-container">
+      <section aria-label="Balloon composition">
+        <div class="carousel" data-carousel>
+          <button
+            id="effect-button"
+            class="carousel-button prev"
+            data-carousel-button="prev"
+          >
+            <img src="../arrow.png" class="arrow-left" />
+          </button>
+          <button
+            id="effect-button"
+            class="carousel-button next"
+            data-carousel-button="next"
+          >
+            <img src="../arrow.png" class="arrow-right" />
+          </button>
+          <ul data-slides>
+            <li class="slide" data-active>
+              <img id="effect" src="../waterdrop.png" alt="Water" />
+            </li>
+            <li class="slide">
+              <img id="effect" src="../confetti.png" alt="Confetti" />
+            </li>
+          </ul>
+        </div>
+      </section>
+      <div class="text-container">
+        <h1>Choose effect:</h1>
+        <p>Get the party started! How do you want your balloon to look?</p>
+      </div>
+    </div>
+
+    <button id="balloonButton" type="button" class="balloon-btn">
+      Send balloon
+    </button>
 
     <script>
-        let wsClient;
+      const colorbuttons = document.querySelectorAll("#color-button");
+      const effectbuttons = document.querySelectorAll("#effect-button");
+      const balloon = ["pink", "water"];
+      const balloonString = balloon.join("").toString();
+      // color balloon
+      colorbuttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const offset = button.dataset.carouselButton === "next" ? 1 : -1;
+          const slides = button
+            .closest("[data-carousel]")
+            .querySelector("[data-slides]");
 
-        const balloonButton = document.querySelector('#balloonButton');
+          const activeSlide = slides.querySelector("[data-active]");
 
-        function sendMessageToServer(message) {
-            if(!wsClient) {
-                console.log('No websocket connection');
-                return;
-            } else {
-                console.log(message);
-                wsClient.send(message);
-            }
+          let newIndex = [...slides.children].indexOf(activeSlide) + offset;
+          if (newIndex < 0) newIndex = slides.children.length - 1;
+          if (newIndex >= slides.children.length) newIndex = 0;
+
+          slides.children[newIndex].dataset.active = true;
+          delete activeSlide.dataset.active;
+          const colorBalloon =
+            slides.children[newIndex].querySelectorAll("#color")[0].alt;
+
+          balloon[0] = colorBalloon;
+          console.log(balloon);
+        });
+      });
+      // effect balloon
+      effectbuttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const offset = button.dataset.carouselButton === "next" ? 1 : -1;
+          const slides = button
+            .closest("[data-carousel]")
+            .querySelector("[data-slides]");
+
+          const activeSlide = slides.querySelector("[data-active]");
+
+          let newIndex = [...slides.children].indexOf(activeSlide) + offset;
+          if (newIndex < 0) newIndex = slides.children.length - 1;
+          if (newIndex >= slides.children.length) newIndex = 0;
+
+          slides.children[newIndex].dataset.active = true;
+          delete activeSlide.dataset.active;
+          const effectBalloon =
+            slides.children[newIndex].querySelectorAll("#effect")[0].alt;
+
+          balloon[1] = effectBalloon;
+          console.log(balloon);
+        });
+      });
+
+      // ws connection
+      let wsClient;
+      const balloonButton = document.querySelector("#balloonButton");
+
+      function sendMessageToServer(message) {
+        if (!wsClient) {
+          console.log("No websocket connection");
+          return;
+        } else {
+          console.log(message);
+          wsClient.send(message);
         }
+      }
 
-        balloonButton.onclick = function (event) {
-            event.preventDefault();
+      balloonButton.onclick = function (event) {
+        event.preventDefault();
 
-            if(!wsClient) {
-                console.log('No websocket connection');
-                return;
-            } else {
-                console.log("Trying to send message from server");
-                sendMessageToServer("confetti;50,205,50;glitter");
-            }
+        if (!wsClient) {
+          console.log("No websocket connection");
+          return;
+        } else {
+          console.log("Trying to send message from server:");
+          sendMessageToServer("confetti;50,205,50;glitter");
         }
+      };
 
-        function init() {
-            let HOST = location.origin.replace(/^http/, 'ws')
-            wsClient = new WebSocket(HOST);
-            // wsClient.binaryType = 'blob';
+      function init() {
+        let HOST = location.origin.replace(/^http/, "ws");
+        wsClient = new WebSocket(HOST);
 
-            wsClient.onopen = (event) => {
-                console.log('Websocket connection established');
-            }
+        wsClient.onopen = (event) => {
+          console.log("Websocket connection established");
+        };
 
-            wsClient.onmessage = (event) => {
-                if (event.data instanceof Blob) {
-                    reader = new FileReader();
-                    reader.onload = () => {
-                        console.log("Result: " + reader.result);
-                    };
+        wsClient.onmessage = (event) => {
+          console.log("Message received from server: ", event);
+        };
 
-                    reader.readAsText(event.data);
-                } else {
-                    console.log("Result: " + event.data);
-                }
-            }
+        wsClient.onclose = (event) => {
+          console.log("No WebSocket connection");
+          wsClient = null;
+        };
 
-            wsClient.onclose = (event) => {
-                console.log('No WebSocket connection');
-                wsClient = null;
-            }
+        wsClient.onerror = (event) => {
+          console.error("WebSocket error observed:", event);
+          wsClient = null;
+        };
+      }
 
-            wsClient.onerror = (event) => {
-                console.error("WebSocket error observed:", event);
-                wsClient = null;
-            }
-        }
-    
-        init();
-
+      init();
     </script>
-</body>
+  </body>
 </html>
-
-
 
 <!-- FUNKAR
 <!DOCTYPE html>
