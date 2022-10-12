@@ -5,7 +5,10 @@ const PORT = process.env.PORT || 8080;
 const INDEX = '/public/index.html';
 
 const server = express()
-  .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
+/*   .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
+ */  
+  .use(express.static("public"))
+  .get("/", (req, res) => res.sendFile(__dirname + INDEX))
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
 
 const wss = new Server({ server});
