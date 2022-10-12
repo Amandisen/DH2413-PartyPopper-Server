@@ -21,69 +21,109 @@
 
   <body>
     <img src="../images/logo.png" class="logo-img" />
-
-    <div class="balloon-container">
+    <div class="balloon-container" data-carousel="">
+      <button
+        id="color-button"
+        class="carousel-button prev"
+        data-carousel-button="prev"
+      >
+        <img src="./images/arrow.png" class="arrow-left" />
+      </button>
       <section aria-label="Balloon composition">
         <div class="carousel" data-carousel>
-          <button
-            id="color-button"
-            class="carousel-button prev"
-            data-carousel-button="prev"
-          >
-            <img src="../images/arrow.png" class="arrow-left" />
-          </button>
-          <button
-            id="color-button"
-            class="carousel-button next"
-            data-carousel-button="next"
-          >
-            <img src="../images/arrow.png" class="arrow-right" />
-          </button>
           <ul data-slides>
             <li class="slide" data-active>
-              <img id="color" src="../images/balloonpink.png" alt="Pink" />
+              <img id="color" src="./images/balloonpink.png" alt="pink" />
             </li>
             <li class="slide">
-              <img id="color" src="./images/balloonblue.png" alt="Blue" />
+              <img id="color" src="./images/balloonblue.png" alt="blue" />
+            </li>
+            <li class="slide">
+              <img id="color" src="./images/balloongreen.png" alt="green" />
+            </li>
+            <li class="slide">
+              <img id="color" src="./images/balloonred.png" alt="red" />
             </li>
           </ul>
         </div>
       </section>
+      <button
+        id="color-button"
+        class="carousel-button next"
+        data-carousel-button="next"
+      >
+        <img src="./images/arrow.png" class="arrow-right" />
+      </button>
       <div class="text-container">
-        <h1>Choose color:</h1>
+        <h1>Choose color</h1>
         <p>Get the party started! How do you want your balloon to look?</p>
       </div>
     </div>
-    <div class="balloon-container">
+    <div class="balloon-container" data-carousel="">
+      <button
+        id="effect-button"
+        class="carousel-button prev"
+        data-carousel-button="prev"
+      >
+        <img src="./images/arrow.png" class="arrow-left" />
+      </button>
       <section aria-label="Balloon composition">
         <div class="carousel" data-carousel>
-          <button
-            id="effect-button"
-            class="carousel-button prev"
-            data-carousel-button="prev"
-          >
-            <img src="../images/arrow.png" class="arrow-left" />
-          </button>
-          <button
-            id="effect-button"
-            class="carousel-button next"
-            data-carousel-button="next"
-          >
-            <img src="../images/arrow.png" class="arrow-right" />
-          </button>
           <ul data-slides>
             <li class="slide" data-active>
-              <img id="effect" src="../images/waterdrop.png" alt="Water" />
+              <img id="effect" src="./images/waterdrop.png" alt="water" />
             </li>
             <li class="slide">
-              <img id="effect" src="../images/confetti.png" alt="Confetti" />
+              <img id="effect" src="./images/confetti.png" alt="confetti" />
+            </li>
+            <li class="slide">
+              <img id="effect" src="./images/marbles.png" alt="marbles" />
             </li>
           </ul>
         </div>
       </section>
+      <button
+        id="effect-button"
+        class="carousel-button next"
+        data-carousel-button="next"
+      >
+        <img src="./images/arrow.png" class="arrow-right" />
+      </button>
       <div class="text-container">
-        <h1>Choose effect:</h1>
-        <p>Get the party started! How do you want your balloon to look?</p>
+        <h1>Choose effect</h1>
+        <p>How are we gonna trash this party... You decide!</p>
+      </div>
+    </div>
+    <div class="balloon-container" data-carousel="">
+      <button
+        id="music-button"
+        class="carousel-button prev"
+        data-carousel-button="prev"
+      >
+        <img src="./images/arrow.png" class="arrow-left" />
+      </button>
+      <section aria-label="Balloon composition">
+        <div class="carousel" data-carousel>
+          <ul data-slides>
+            <li class="slide" data-active>
+              <img id="music" src="./images/playbtn.png" alt="music" />
+            </li>
+            <li class="slide" data-active>
+              <img id="music" src="./images/playbtn.png" alt="music" />
+            </li>
+          </ul>
+        </div>
+      </section>
+      <button
+        id="music-button"
+        class="carousel-button next"
+        data-carousel-button="next"
+      >
+        <img src="./images/arrow.png" class="arrow-right" />
+      </button>
+      <div class="text-container">
+        <h1>Choose music</h1>
+        <p>Mm the sweet sound of a party popping...</p>
       </div>
     </div>
 
@@ -94,8 +134,8 @@
     <script>
       const colorbuttons = document.querySelectorAll("#color-button");
       const effectbuttons = document.querySelectorAll("#effect-button");
-      const balloon = ["pink", "water"];
-      const balloonString = balloon.join("").toString();
+      const musicbuttons = document.querySelectorAll("#music-button");
+      const balloon = ["pink", "water", "music"];
       // color balloon
       colorbuttons.forEach((button) => {
         button.addEventListener("click", () => {
@@ -116,7 +156,7 @@
             slides.children[newIndex].querySelectorAll("#color")[0].alt;
 
           balloon[0] = colorBalloon;
-          console.log(balloon);
+          //console.log(balloon);
         });
       });
       // effect balloon
@@ -139,7 +179,29 @@
             slides.children[newIndex].querySelectorAll("#effect")[0].alt;
 
           balloon[1] = effectBalloon;
-          console.log(balloon);
+          //console.log(balloon);
+        });
+      });
+      musicbuttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const offset = button.dataset.carouselButton === "next" ? 1 : -1;
+          const slides = button
+            .closest("[data-carousel]")
+            .querySelector("[data-slides]");
+
+          const activeSlide = slides.querySelector("[data-active]");
+
+          let newIndex = [...slides.children].indexOf(activeSlide) + offset;
+          if (newIndex < 0) newIndex = slides.children.length - 1;
+          if (newIndex >= slides.children.length) newIndex = 0;
+
+          slides.children[newIndex].dataset.active = true;
+          delete activeSlide.dataset.active;
+          const musicBalloon =
+            slides.children[newIndex].querySelectorAll("#music")[0].alt;
+
+          balloon[2] = musicBalloon;
+          //console.log(balloon);
         });
       });
 
@@ -165,7 +227,10 @@
           return;
         } else {
           console.log("Trying to send message from server:");
-          sendMessageToServer("confetti;50,205,50;glitter");
+
+          const setBalloon = balloon.toString();
+          //console.log(setBalloon);
+          sendMessageToServer(setBalloon);
         }
       };
 
@@ -288,4 +353,4 @@
     </script>
 </body>
 
-</html> -->}
+</html> -->

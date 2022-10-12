@@ -1,8 +1,8 @@
-const express = require('express');
-const { Server } = require('ws');
+const express = require("express");
+const { Server } = require("ws");
 
 const PORT = process.env.PORT || 8080;
-const INDEX = '/public/index.html';
+const INDEX = "/public/index.html";
 
 const server = express()
 /*   .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
@@ -11,30 +11,32 @@ const server = express()
   .get("/", (req, res) => res.sendFile(__dirname + INDEX))
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
 
-const wss = new Server({ server});
+const wss = new Server({ server });
 
-wss.on('connection', (ws) => {
+wss.on("connection", (ws) => {
   // passing on the message to broadcast function
-  ws.on('message', (data) => {
+  ws.on("message", (data) => {
     console.log(`Message received from client ${data}`);
     broadcast(data, ws);
-  })
-  // logging when new client is connected 
-  console.log('New client connected!');
+  });
+  // logging when new client is connected
+  console.log("New client connected!");
 
-  ws.on('close', () => console.log('Client disconnected'));
+  ws.on("close", () => console.log("Client disconnected"));
 });
 
-
 function broadcast(data, socketToOmit) {
-//implement the broadcast pattern. Exclude the emitting socket. Data is message. 
-  wss.clients.forEach(connectedClient => {
-    if(connectedClient.readyState !== Server.CLOSED && connectedClient != socketToOmit) {
+  //implement the broadcast pattern. Exclude the emitting socket. Data is message.
+  wss.clients.forEach((connectedClient) => {
+    if (
+      connectedClient.readyState !== Server.CLOSED &&
+      connectedClient != socketToOmit
+    ) {
       console.log(`trying to broadcast: ${data}`);
       console.log(data.toString());
       connectedClient.send(data.toString());
     }
-  })
+  });
 }
 
 /* THIS WORKS
@@ -92,9 +94,6 @@ function broadcast(data, socketToOmit) {
 server.listen(PORT, () => {
   console.log(`Listening on: http://localhost:${server.address().port}`);
 }); */
-
-
-
 
 /* const WebSocket = require('ws')
 
