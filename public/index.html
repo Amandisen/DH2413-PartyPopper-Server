@@ -100,7 +100,7 @@
         <p>How are we gonna trash this party... You decide!</p>
       </div>
     </div>
-    <div class="balloon-container" data-carousel="">
+    <!-- <div class="balloon-container" data-carousel="">
       <button
         id="music-button"
         class="carousel-button prev"
@@ -119,8 +119,8 @@
             </li>
           </ul>
         </div>
-      </section>
-      <!-- <button
+      </section> -->
+    <!-- <button
         id="music-button"
         class="carousel-button next"
         data-carousel-button="next"
@@ -131,7 +131,6 @@
         <h1>Choose music</h1>
         <p>Mm the sweet sound of a party popping...</p>
       </div> -->
-    </div>
 
     <button id="balloonButton" type="button" class="balloon-btn">
       Send balloon
@@ -142,6 +141,7 @@
       const effectbuttons = document.querySelectorAll("#effect-button");
       const musicbuttons = document.querySelectorAll("#music-button");
       const balloon = ["pink", "water", "music"];
+
       // color balloon
       colorbuttons.forEach((button) => {
         button.addEventListener("click", () => {
@@ -237,6 +237,7 @@
           const setBalloon = balloon.toString();
           //console.log(setBalloon);
           sendMessageToServer(setBalloon);
+          alert("Balloon sent!");
         }
       };
 
