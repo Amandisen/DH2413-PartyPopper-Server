@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="shortcut icon" href="#" />
+    <link rel="stylesheet" type="text/css" href="/utils/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="../utils/slide.js" defer></script>
+
+    <title>Party Popper!</title>
+  </head>
+  <body>
+    <nav>
+      <img data-aos="fade-up" src="../images/poster.png" class="header" />
+    </nav>
+    <div data-aos="fade-up" class="container__text">
+      <h1 class="h1__homepage">Goal and motivation of project</h1>
+      <div class="container__text--pink">
+        Party Popper is an asymmetrical multiplayer experience where two players
+        collaborate with the joint goal to pop balloons. One player is in VR,
+        popping balloons with the weapon of their choice. The second player is
+        outside, sending balloons to the VR player through a web interface on a
+        tablet. The balloons contain a variation of visual and sonic experiences
+        which are revealed once they are popped. The second player steers the
+        experience for the VR player by choosing what kind of balloons will be
+        popped. The experience can be seen as both collaborative and competitive
+        – depending on the mindset of the players involved. <br /><br />This
+        experience was created as a part of the course DH2413 Advanced Graphics
+        and Interaction in the autumn of 2022 and was displayed on Tekniska
+        Museet for user testing on November 2.
+      </div>
+    </div>
+    <div data-aos="fade-up" class="container__text">
+      <h1 class="h1__homepage">
+        Graphics and interaction technologies used and developed
+      </h1>
+      <div data-aos="fade-in" class="container__text--blue">
+        For the balloon explosion effects we used mainly particle systems with
+        particle collisions to detect the point of intersection with the floor
+        and walls in the room. All assets including the balloon residues, like
+        the paint splats, the objects in the room and the tools and weapons used
+        to interact with the balloons are created using Blender.
+        <br /><br />To increase the performance in relation to the repeated
+        instantiating and destroying of objects we used the object pool design
+        pattern and implemented our own object pool for all of the balloon
+        residues. We implemented our own shaders for the paint and water
+        explosion using the Universal Render Pipeline… <br /><br />The
+        interaction of the outside user was created as a deployed website on
+        Heroku with a backend using Node js which sends information about which
+        balloons to spawn to the VR interface using websockets…
+      </div>
+    </div>
+    <div data-aos="fade-up" class="container__images">
+      <img class="container__images__image" src="./images/cactus.gif" />
+      <img class="container__images__image" src="./images/balloonblue.png" />
+      <img class="container__images__image" src="./images/balloonblue.png" />
+    </div>
+    <div data-aos="fade-up" class="container__text">
+      <h1 class="h1__homepage">Challenges & Obstacles</h1>
+      <div class="container__text--blue">
+        We debated between using the HTC Vive and Qculus Quest 2 but decided on
+        the later due to the full mobility afforded by not needing a cable
+        connection during gameplay. However, that presented a big challenge in
+        the trade off between performance and graphics. For example, our
+        graphical quality would have greatly increased by applying an
+        anti-aliasing filter, however after testing we decided against it since
+        it put too much pressure on the performance. <br /><br />For version
+        control we used Github, however from our experience it does not work
+        great with Unity and we had quite a few merge conflicts throughout the
+        project. <br /><br />One of our main goals was to expand the
+        VR-experience outside of the VR-environment by creating a collaborative
+        cross-platform experience with one player on VR and another on a tablet.
+        A big challenge was therefore to provide an equally immersive and fun
+        experience for both players. In line with [reference to RoleVR] we tried
+        to achieve this by defining clear roles for each of the players based on
+        our core concept of a children's party. The tablet user could be
+        imagined to be a friend or sibling and has an authorial, supportive role
+        where they control the balloons in the VR-environment. Whilst the
+        VR-player is the birthday person that in the aftermath of their party is
+        popping the balloons, possibly happy with their party or angry with the
+        presents received.
+      </div>
+    </div>
+    <div data-aos="fade-up" class="container__related-work">
+      <h1 class="h1__homepage">Related work</h1>
+      <div class="container__related">
+        <div class="container__text--green">
+          <h3>
+            RoleVR: Multi-experience in immersive virtual reality between
+            co-located HMD and non-HMD users.
+          </h3>
+          <h3 class="container__h3">
+            Jivon Lee, Mingyu Kim, and Jinmo Kim. 2019.
+          </h3>
+          <div>
+            RoleVR is a cross-platform game where the users had to collaborate
+            with the aim of getting through a maze safely. The VR player moves
+            his legs to walk around in the environment, and communicates what he
+            sees to the non-VR user. The non-VR-user is in charge of the
+            overview of the maze to see different patterns, checkpoints and is
+            also in charge of dropping bombs and shields to protect the VR-user.
+            <br /><br />This kind of interaction where the non-VR-user has an
+            authorial role is something we also aimed to create in our project.
+            In this project they highlight the importance of creating different
+            roles for the different types of users
+          </div>
+        </div>
+        <div class="container__text--green">
+          <h3>ShareVR: Virtual Reality between HMD and Non-HMD Users.</h3>
+          <h3 class="container__h3">
+            Jan Gugenheimer, Evgeny Stemasov, Julian Frommel, and Enrico Rukzio.
+            2017.
+          </h3>
+          <div>
+            ShareVR had a similar goal to ours, that is to allow non-VR-users to
+            be included in the VR-experience and gain enjoyment from it. They
+            developed a cross-platform system where the VR space is projected
+            onto the floor and both users' movements are tracked. Based on
+            testing, they present four guidelines for creating similar
+            applications. One of which was to leverage the asymmetry, that is to
+            utilize the inherent differences of the two users and platforms when
+            designing the tasks. <br /><br />This was relevant for our project
+            since we also aimed to create a cross-platform asymmetric
+            interaction that engages both users and allows them both to affect
+            the game, but without sharing the same physical space.
+          </div>
+        </div>
+        <div class="container__text--green">
+          <h3>
+            Exploring Emotion Brushes for a Virtual Reality Painting Tool.
+          </h3>
+          <h3 class="container__h3">Jungah Son and Misha Sra. 2021.</h3>
+          <div>
+            In this project they created a VR painting tool, dubbed emoPaint,
+            that allows the users to paint in 3D. As the name would indicate, it
+            enables the users to create paintings that express their emotions
+            using a range of parameters and different visual elements like color
+            palettes, line textures and shapes. <br /><br />We also want to
+            explore aspects of expressing emotion with our application by
+            presenting the VR-user with balloons containing different pooping
+            effects, like paint and lights, and add other aspects like sounds.
+          </div>
+        </div>
+      </div>
+    </div>
+    <h1 data-aos="fade-up" class="about__h1">The Team</h1>
+    <section data-aos="fade-up" class="about">
+      <div class="about__person">
+        <img src="./images/agnes.png" class="about__person__image" />
+        <h2>Agnes Shutrick</h2>
+        <h3>agnesben@kth.se</h3>
+        <div class="about__person__text">
+          water explosion, development of website, balloon physics
+        </div>
+      </div>
+      <div class="about__person">
+        <img src="./images/agnes.png" class="about__person__image" />
+        <h2>Maria Jacobson</h2>
+        <h3>majacobs@kth.se</h3>
+        <div class="about__person__text">
+          bouncy ball explosion, UI design, cactus weapon
+        </div>
+      </div>
+      <div class="about__person">
+        <img src="./images/ebba.png" class="about__person__image" />
+        <h2>Ebba Rovig</h2>
+        <h3>rovig@kth.se</h3>
+        <div class="about__person__text">
+          disco explosion, sword and boxing glove, balloon physics
+        </div>
+      </div>
+      <div class="about__person">
+        <img src="./images/agnes.png" class="about__person__image" />
+        <h2>Erik Meurk</h2>
+        <h3>emeurk@kth.se</h3>
+        <div class="about__person__text">
+          deathstar explosion, connection of VR-headset, VR-environment
+        </div>
+      </div>
+      <div class="about__person">
+        <img src="./images/amanda.png" class="about__person__image" />
+        <h2>Amanda Lindqvist</h2>
+        <h3>amlindqv@kth.se</h3>
+        <div class="about__person__text">
+          paint explosion, object pool, server and websocket connection
+        </div>
+      </div>
+    </section>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+  </body>
+</html>
