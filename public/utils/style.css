@@ -272,6 +272,52 @@ h3 {
   font-style: italic;
 }
 
+.container__play {
+  width: 15%;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0px;
+  margin-right: 0;
+  margin-left: auto;
+}
+
+.container__play__button {
+  animation-name: playButton;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: linear;
+  width: auto;
+  margin: 10px;
+  padding: 1rem;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-items: center;
+  border-radius: 25px;
+}
+
+.container__play__button--img {
+  width: 100%;
+  cursor: pointer;
+}
+
+@keyframes playButton {
+  0% {
+    background-color: #e7fef8;
+  }
+  33% {
+    background-color: #e5f6ff;
+  }
+  66% {
+    background-color: rgba(219, 0, 255, 0.1);
+  }
+  100% {
+    background-color: #fffed8;
+  }
+}
+
 @media screen and (max-width: 800px) {
   body {
     width: 100vw;
