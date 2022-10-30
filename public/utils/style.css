@@ -9,6 +9,17 @@ body {
   margin-top: 0%;
 }
 
+.about__link {
+  margin-right: auto;
+  margin-left: 1rem;
+  cursor: pointer;
+}
+
+.about__link:hover {
+ font-weight: bolder;
+ color: rgba(211, 4, 104, 0.53);
+}
+
 .carousel {
   height: 25vh;
   width: 15vw;
