@@ -16,8 +16,8 @@ body {
 }
 
 .about__link:hover {
- font-weight: bolder;
- color: rgba(211, 4, 104, 0.53);
+  font-weight: bolder;
+  color: rgba(211, 4, 104, 0.53);
 }
 
 .carousel {
@@ -81,7 +81,7 @@ p {
 .logo-img {
   width: 250px;
   margin-bottom: 1rem;
-  margin-top: 1rem;
+  margin-top: 0rem;
 }
 
 .arrow-left {
@@ -95,7 +95,7 @@ p {
 
 .balloon-btn-container {
   position: relative;
-  width: 40%;
+  width: 60%;
   display: flex;
   justify-content: center;
 }
@@ -105,7 +105,7 @@ p {
   width: 100%;
   position: absolute;
   padding: 1rem;
-  height: 3rem;
+  height: 4rem;
   margin: 1rem;
   border-radius: 15px;
   border: none;
@@ -133,7 +133,7 @@ p {
 
 .balloon-container {
   width: 80%;
-  height: 20%;
+  height: 10%;
   margin: 10px;
   padding: 1rem;
   display: flex;
@@ -148,14 +148,28 @@ p {
 .text-container {
   display: flex;
   flex-direction: column;
+  margin: 1rem;
 }
 
-@media screen and (max-width: 800px) {
-  body {
-    width: 100vw;
-  }
+.container__balloon__arrows {
+  display: flex;
+  flex-direction: row;
+}
+
+@media screen and (max-width: 400px) {
   .balloon-container {
-    width: 0%;
+    width: 80%;
+    flex-direction: column;
+  }
+  p {
+    font-size: large;
+  }
+  .balloon-btn {
+    font-size: large;
+    height: 3rem;
+  }
+  .text-container {
+    margin-top: 0rem;
   }
 }
 
@@ -211,7 +225,7 @@ p {
 }
 
 .container__images {
-  width: 60%;
+  width: 75%;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -228,8 +242,18 @@ p {
 }
 
 .container__images__image {
-  height: 200px;
+  height: 300px;
+  width: 300px;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+.container__images__tester {
+  height: 400px;
   width: fit-content;
+  object-fit: cover;
+  border-radius: 25px;
+  margin-bottom: 1rem;
 }
 
 .container__text--green {
@@ -346,9 +370,9 @@ h3 {
   }
 }
 
-@media screen and (max-width: 800px) {
-  body {
-    width: 100vw;
+@media screen and (max-width: 500px) {
+  .container__related {
+    flex-direction: column;
   }
   .container__text {
     width: 90%;
@@ -364,6 +388,7 @@ h3 {
   .container__images {
     width: 100%;
     display: flex;
+    flex-wrap: nowrap;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
