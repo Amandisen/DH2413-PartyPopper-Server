@@ -93,9 +93,17 @@ p {
   transform: scaleX(-1);
 }
 
+.balloon-btn-container {
+  position: relative;
+  width: 40%;
+  display: flex;
+  justify-content: center;
+}
 .balloon-btn {
   background-color: rgba(211, 4, 104, 0.53);
-  width: 40%;
+  /* width: 40%; */
+  width: 100%;
+  position: absolute;
   padding: 1rem;
   height: 3rem;
   margin: 1rem;
@@ -112,6 +120,15 @@ p {
 .balloon-btn:active {
   transform: scale(0.98);
   box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
+
+.balloon-btn-inflation {
+  display: none;
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  object-position: 50% 50%;
 }
 
 .balloon-container {

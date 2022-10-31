@@ -136,10 +136,12 @@
         <h1>Choose music</h1>
         <p>Mm the sweet sound of a party popping...</p>
       </div> -->
-
-    <button id="balloonButton" type="button" class="balloon-btn">
-      Send balloon
-    </button>
+    <div class="balloon-btn-container">
+      <button id="balloonButton" type="button" class="balloon-btn">
+        Send balloon
+      </button>
+      <img src="./images/balloonInflation1.gif" id="balloonInflation" class="balloon-btn-inflation"/>
+    </div>
 
     <script>
       const colorbuttons = document.querySelectorAll("#color-button");
@@ -219,7 +221,7 @@
       // ws connection
       let wsClient;
       const balloonButton = document.querySelector("#balloonButton");
-
+      const balloonInflation = document.querySelector("#balloonInflation");
       function sendMessageToServer(message) {
         if (!wsClient) {
           console.log("No websocket connection");
@@ -240,9 +242,15 @@
           console.log("Trying to send message from server:");
 
           const setBalloon = balloon.toString();
-          //console.log(setBalloon);
+          balloonInflation.style.display = "block";
+          balloonButton.style.display = "none";
+
           sendMessageToServer(setBalloon);
-          alert("Balloon sent!");
+          
+          setTimeout(function() {
+            balloonInflation.style.display = "none";
+            balloonButton.style.display = "block";
+          }, 2000);
         }
       };
 
