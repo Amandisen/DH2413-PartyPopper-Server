@@ -15,7 +15,7 @@
       href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
-    <link rel="icon" type="image/ico" href="/images/favicon.ico">
+    <link rel="icon" type="image/ico" href="/images/favicon.ico" />
     <script src="../utils/slide.js" defer></script>
     <title>Party Popper!</title>
   </head>
@@ -140,7 +140,11 @@
       <button id="balloonButton" type="button" class="balloon-btn">
         Send balloon
       </button>
-      <img src="./images/balloonInflation1.gif" id="balloonInflation" class="balloon-btn-inflation"/>
+      <img
+        src="./images/balloonInflation1.gif"
+        id="balloonInflation"
+        class="balloon-btn-inflation"
+      />
     </div>
 
     <script>
@@ -247,7 +251,7 @@
 
           sendMessageToServer(setBalloon);
 
-          setTimeout(function() {
+          setTimeout(function () {
             balloonInflation.style.display = "none";
             balloonButton.style.display = "block";
           }, 2000);
