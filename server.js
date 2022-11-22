@@ -3,7 +3,7 @@ const { Server } = require("ws");
 
 const PORT = process.env.PORT || 8080;
 const PARTYPOPPER = "/public/partypopper.html";
-const HOMEPAGE = "/public/homepage.html";
+const HOMEPAGE = "/public/index.html";
 
 const server = express()
 /*   .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
