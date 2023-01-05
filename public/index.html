@@ -24,8 +24,14 @@
   </head>
   <body>
     <nav>
-      <img data-aos="fade-up" src="../images/poster.png" class="header" ><img class="arrow__header" src="../images/arrow2.png"/></img>
+      <img data-aos="fade-up" src="../images/poster.png" class="header" /><img
+        class="arrow__header"
+        src="../images/arrow2.png"
+      />
     </nav>
+    <button class="scroll__btn" id="top-button">
+      <img class="scroll__btn__image" src="../images/arrow2.png" />
+    </button>
     <div data-aos="fade-up" class="container__play">
       <h1 class="h1__homepage">Let's start...</h1>
       <div class="container__play__button">
@@ -81,9 +87,9 @@
       </div>
     </div>
     <div data-aos="fade-up" class="container__images">
-      <img class="container__images__image" src="./images/cactus.gif" />
-      <img class="container__images__image" src="./images/sword.gif" />
-      <img class="container__images__image" src="./images/glove.gif" />
+      <img class="container__images__image" src="./images/cactus.png" />
+      <img class="container__images__image" src="./images/sword.png" />
+      <img class="container__images__image" src="./images/glove.png" />
     </div>
     <div data-aos="fade-up" class="container__text">
       <h1 class="h1__homepage">
@@ -106,7 +112,12 @@
         explosion using the Universal Render Pipeline. <br /><br />The
         interaction of the outside user was created as a deployed website on
         Heroku with a backend using Node.js which sends information about which
-        balloons to spawn to the VR interface using websockets.
+        balloons to spawn to the VR interface using websockets. <br /><br />
+        The background music is from freesound.org. The balloon popping sounds
+        are licensed from Epidemic Sound. The Deathstar 3D asset is from
+        CGSheep, party banner 3D assets are from Robot Skeleton, the rug texture
+        is from Nobiax/Yughues, the skybox is from Avionx, and the floor texture
+        is from Innovana Games.
       </div>
     </div>
     <div data-aos="fade-up" class="container__images">
@@ -298,6 +309,29 @@
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
       AOS.init();
+    </script>
+    <script>
+      document
+        .getElementById("top-button")
+        .addEventListener("click", function () {
+          window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth",
+          });
+        });
+
+      window.addEventListener("scroll", function () {
+        var scrollPercentage =
+          (document.documentElement.scrollTop + document.body.scrollTop) /
+          (document.documentElement.scrollHeight -
+            document.documentElement.clientHeight);
+        if (scrollPercentage > 0.1) {
+          document.querySelector(".scroll__btn").style.display = "block";
+        } else {
+          document.querySelector(".scroll__btn").style.display = "none";
+        }
+      });
     </script>
   </body>
 </html>

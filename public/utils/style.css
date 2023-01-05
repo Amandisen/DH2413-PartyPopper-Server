@@ -14,6 +14,22 @@ body {
   margin-left: 1rem;
   cursor: pointer;
 }
+.scroll__btn {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  display: none;
+  background: none;
+  border: none;
+}
+
+.scroll__btn__image {
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+  cursor: pointer;
+  transform: rotate(180deg);
+}
 
 .about__link:hover {
   font-weight: bolder;
@@ -343,7 +359,7 @@ p {
   width: fit-content;
   align-self: center;
   justify-self: center;
-  font-size: medium;
+  font-size: xx-large;
 }
 
 h2 {
